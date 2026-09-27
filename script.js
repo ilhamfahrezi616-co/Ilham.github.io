@@ -165,22 +165,45 @@ loadTrack();
   if(reduce){targets.forEach(el=>el.classList.add('revealed'))}
   else {const io=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('revealed');io.unobserve(entry.target)}}),{threshold:.12,rootMargin:'0px 0px -8%'});targets.forEach(el=>io.observe(el));}
 
-  // Active section in the top navigation — deterministic on every scroll position.
+  // Active section in the top navigation.
+  // Use the real document position instead of offsetTop so nested/positioned
+  // elements cannot make the active marker jump to the wrong section.
   const links=[...document.querySelectorAll('#navlinks a[href^="#"]')];
-  const sections=links.map(a=>({link:a,section:document.querySelector(a.getAttribute('href'))})).filter(item=>item.section);
+  const sections=links
+    .map(a=>({link:a,section:document.querySelector(a.getAttribute('href'))}))
+    .filter(item=>item.section);
+
+  let activeNavTick=false;
   function updateActiveNav(){
-    const marker=scrollY + Math.min(innerHeight * .34, 260);
-    let current=sections[0];
-    for(const item of sections){
-      if(item.section.offsetTop <= marker) current=item;
-      else break;
-    }
-    links.forEach(a=>a.classList.remove('active'));
-    current?.link.classList.add('active');
+    if(activeNavTick) return;
+    activeNavTick=true;
+
+    requestAnimationFrame(()=>{
+      activeNavTick=false;
+      const marker=scrollY + Math.min(innerHeight * .34, 260);
+      let current=sections[0];
+      let closestDistance=Infinity;
+
+      for(const item of sections){
+        const top=item.section.getBoundingClientRect().top + scrollY;
+        const distance=marker-top;
+
+        // Section is active once the marker has entered it.
+        if(distance >= 0 && distance < closestDistance){
+          current=item;
+          closestDistance=distance;
+        }
+      }
+
+      links.forEach(a=>a.classList.remove('active'));
+      if(current) current.link.classList.add('active');
+    });
   }
+
   if(sections.length){
     addEventListener('scroll',updateActiveNav,{passive:true});
     addEventListener('resize',updateActiveNav);
+    addEventListener('load',updateActiveNav);
     updateActiveNav();
   }
 
