@@ -1699,3 +1699,7 @@ img, video, canvas, svg, iframe {
     bottom: 9px;
   }
 }
+
+
+/* FINAL MOBILE PROFILE: remove decorative sunset sun */
+.sunset-sun { display: none !important; }
