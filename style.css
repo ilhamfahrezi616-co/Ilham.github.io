@@ -1225,3 +1225,360 @@ img{max-width:100%}
     text-overflow: ellipsis !important;
   }
 }
+
+
+/* === Compact sizing pass ===
+   Keeps the existing layout/functionality, but reduces visual scale. */
+.nav{height:68px;padding-left:4vw;padding-right:4vw}
+.brand{font-size:21px}
+.nav nav{gap:27px}
+.nav nav a,.nav-cta{font-size:9px}
+.nav-cta{padding:10px 13px}
+
+.hero{padding:105px 4vw 25px;min-height:760px}
+.hero h1{font-size:clamp(66px,10vw,145px);margin:20px 0 25px}
+.hero-desc{font-size:13px}
+.hero-image{right:6%;width:39%;height:61%;top:19%}
+
+.section-pad{padding:100px 8vw}
+.intro h2,.section-head h2,.contact h2{font-size:clamp(40px,5vw,70px)}
+.intro-bottom p,.section-head>p{font-size:13px}
+.signature{font-size:21px}
+.section-head{margin-bottom:48px}
+
+.photo-grid{gap:52px 7%}
+.photo-card img{height:370px}
+.photo-card.tall img{height:500px}
+.photo-card.offset{margin-top:85px}
+.photo-card figcaption{font-size:8px}
+
+.manifesto{padding:90px 8vw}
+.manifesto p{font-size:clamp(32px,4.2vw,60px)}
+
+.culture-grid{gap:15px}
+.culture-card{height:500px}
+.culture-number{top:18px;left:18px}
+.culture-info{left:21px;right:21px;bottom:21px}
+.culture-info h3{font-size:clamp(27px,2.7vw,38px)}
+.culture-info p{font-size:11px}
+
+.contact-main{margin:50px 0 95px 12%}
+.contact h2{font-size:clamp(52px,7.5vw,105px);margin:20px 0 32px}
+
+.travel-feature{height:min(58vw,560px);min-height:280px}
+.travel-caption{padding:17px;font-size:8px}
+.travel-stamp{width:92px;height:92px;right:20px;top:20px}
+.travel-stamp strong{font-size:25px}
+.travel-details{font-size:7px;padding:15px 0 0}
+
+.hobby-grid{gap:18px}
+.hobby-card{height:490px}
+.hobby-overlay{left:24px;right:24px;bottom:24px}
+.hobby-overlay h3,.film-copy h3{font-size:clamp(32px,3.5vw,52px);margin:15px 0}
+.hobby-overlay p,.film-copy p{font-size:12px}
+.hobby-tag{margin-top:17px}
+
+.record-player{max-width:760px;padding:22px 28px 25px}
+.turntable{height:350px;margin:20px 0}
+.player-bottom{padding:10px 0 16px}
+.track-meta h3{font-size:clamp(23px,2.6vw,33px)}
+.track-meta>p{font-size:11px}
+.arrow-btn{width:42px;height:42px;font-size:16px}
+.play-btn{width:51px;height:51px}
+
+.film-layout{gap:6%}
+.film-feature{height:430px}
+.film-pills{margin-top:23px}
+.film-pills span{padding:8px 10px;font-size:7px}
+
+.section-motif{width:96px;height:96px}
+.motif-aperture span{font-size:48px}
+.motif-compass span{font-size:47px}
+
+@media(max-width:800px){
+  .nav{height:62px;padding:0 5vw}
+  .nav nav{top:62px;padding:20px 5vw;gap:18px}
+  .nav-cta{font-size:7px;padding:8px 11px}
+  .menu{font-size:20px}
+
+  .hero{min-height:690px;height:100svh;padding:88px 5vw 22px}
+  .hero-copy{top:23%;left:7%}
+  .hero h1{font-size:clamp(62px,16vw,110px);margin:17px 0 20px}
+  .hero-desc{font-size:12px;line-height:1.7}
+  .hero-image{top:31%;width:86%;height:57%}
+
+  .section-pad{padding:70px 6vw}
+  .intro{gap:34px}
+  .intro h2,.section-head h2{font-size:46px}
+  .intro-bottom p,.section-head>p{font-size:12px}
+  .section-head{margin-bottom:35px}
+
+  .photo-grid{gap:30px 13px}
+  .photo-card img,.photo-card.tall img{height:245px}
+  .photo-card.offset{margin-top:38px}
+  .photo-card figcaption{font-size:6px;padding-top:10px}
+
+  .manifesto{padding:70px 6vw}
+  .manifesto p{font-size:30px}
+
+  .culture-card{height:420px}
+  .culture-info h3{font-size:31px}
+  .culture-info p{font-size:10px}
+
+  .travel-feature{height:350px;min-height:0}
+  .travel-caption{padding:14px;font-size:7px}
+  .travel-stamp{width:78px;height:78px;right:14px;top:14px}
+  .travel-stamp strong{font-size:21px}
+  .travel-details{font-size:6px;gap:10px}
+
+  .hobby-grid{gap:14px}
+  .hobby-card{height:410px}
+  .hobby-overlay{left:18px;right:18px;bottom:18px}
+  .hobby-overlay h3,.film-copy h3{font-size:30px;margin:12px 0}
+  .hobby-overlay p,.film-copy p{font-size:10px}
+  .hobby-tag{font-size:7px;margin-top:14px}
+
+  .record-player{padding:17px 13px 20px}
+  .player-top{font-size:8px}
+  .turntable{height:285px}
+  .player-bottom{gap:14px}
+  .track-meta h3{font-size:25px}
+  .track-meta>p{font-size:10px}
+  .arrow-btn{width:38px;height:38px;font-size:14px}
+  .play-btn{width:46px;height:46px}
+  .deck-controls{left:18px;right:18px;bottom:15px}
+  .film-feature{height:300px}
+
+  .section-motif{width:78px;height:78px}
+  .motif-aperture span{font-size:38px}
+  .motif-compass span{font-size:37px}
+  .motif-aperture small,.motif-compass b{font-size:6px}
+}
+
+/* Perbesar/perkecil ukuran: poster film dikecilkan tanpa mengubah rasio aslinya (hanya membatasi lebar & memusatkannya), dan tampilan pemutar musik sedikit diperkecil. */
+.category-film .film-feature{
+  max-width: 400px;
+  margin: 0 auto;
+}
+.category-film .film-posters figure{
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.record-player{
+  max-width: 640px;
+}
+.turntable{
+  height: 300px;
+}
+.turntable-platter{
+  width: min(55%, 300px);
+}
+
+/* =========================================================
+   MOBILE PERFORMANCE PATCH — ILHAM PORTFOLIO
+   ========================================================= */
+@media (max-width: 800px) {
+  /* Avoid keeping large numbers of layers permanently promoted. */
+  .photo-card,
+  .hobby-card,
+  .film-feature,
+  .travel-feature,
+  .hero-image,
+  .travel-feature img,
+  .game-slide {
+    will-change: auto !important;
+  }
+
+  /* Decorative animations are expensive on small GPUs. */
+  body:before,
+  body:after,
+  .hero:before,
+  .hero:after,
+  .hero h1 em,
+  .section-head:before,
+  .record-player:before,
+  .power-light,
+  .travel:before,
+  .sunset-sun,
+  .sunset-cloud,
+  .bird-a,
+  .bird-b,
+  .loader-cloud {
+    animation: none !important;
+  }
+
+  /* Keep the music record animation because it is part of the player UI. */
+  .vinyl.spinning {
+    animation-duration: 7s !important;
+  }
+
+  /* Blur/backdrop-filter is one of the most expensive effects on phones. */
+  .nav.nav-scrolled,
+  .nav nav,
+  .photo-lightbox,
+  .category-game .game-arrow,
+  .category-game .game-slider-count {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+
+  /* Replace large blurred ambient layers with simple translucent shapes. */
+  body:before,
+  body:after {
+    filter: none !important;
+    opacity: .07 !important;
+  }
+
+  /* Reduce large shadows that force expensive paint work. */
+  .hero-image,
+  .travel-feature,
+  .category-game .game-group,
+  .category-film .film-feature,
+  .record-player {
+    box-shadow: 0 12px 32px rgba(0,0,0,.22) !important;
+  }
+
+  /* Disable hover-only image effects on touch devices. */
+  .travel-gallery figure:hover img,
+  .film-posters figure:hover img,
+  .photo-card:hover img {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  /* The mobile layout does not need the desktop reveal delay. */
+  .reveal,
+  .reveal.revealed {
+    transition-duration: .22s !important;
+  }
+
+  /* Make large image decoding/raster work less aggressive on mobile. */
+  img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+@media (max-width: 520px) {
+  /* Extra conservative mode for smaller phones. */
+  .ticker-track {
+    animation-duration: 34s !important;
+  }
+
+  .record-player:before {
+    display: none !important;
+  }
+
+  .scroll-progress {
+    box-shadow: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE HORIZONTAL OVERFLOW FIX
+   Prevent the page from becoming wider than the phone viewport.
+   ========================================================= */
+html {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: clip;
+  position: relative;
+}
+
+*, *::before, *::after {
+  max-width: 100%;
+}
+
+img, video, canvas, svg, iframe {
+  max-width: 100%;
+}
+
+@media (max-width: 700px) {
+  /* Do not let fixed/absolute decorations create horizontal scroll width. */
+  .nav {
+    width: 100%;
+    max-width: 100%;
+    left: 0;
+    right: 0;
+  }
+
+  main,
+  section,
+  header,
+  footer,
+  .hero,
+  .section-pad,
+  .manifesto,
+  .contact,
+  .travel,
+  .hobby-section,
+  .music-section,
+  .category-game,
+  .category-film,
+  .category-photo {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Decorative layers can extend outside their visual area, but must not
+     participate in the document's horizontal scrollable width. */
+  .hero,
+  .travel,
+  .manifesto,
+  .motion-ticker,
+  .hobby-section,
+  .music-section,
+  .category-game,
+  .category-film,
+  .photo-section {
+    overflow-x: clip;
+  }
+
+  .ticker-track {
+    max-width: none;
+  }
+
+  .hero-copy,
+  .section-head,
+  .intro-content,
+  .contact-main,
+  .contact-intro,
+  .contact-simple,
+  .contact-links,
+  .travel-feature,
+  .travel-gallery,
+  .game-groups,
+  .game-group,
+  .film-layout,
+  .film-posters,
+  .record-player {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  /* Long text such as email/URLs must wrap instead of pushing the page wider. */
+  .email-link,
+  .contact-link,
+  .contact-bottom,
+  .hero-desc,
+  .section-head > p,
+  .intro-bottom p {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  /* Remove tiny transform overshoots on touch screens. */
+  .category-game .game-slide,
+  .lightbox-prev,
+  .lightbox-next,
+  .lightbox-close {
+    max-width: none;
+  }
+}
