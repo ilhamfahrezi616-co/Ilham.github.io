@@ -1582,3 +1582,120 @@ img, video, canvas, svg, iframe {
     max-width: none;
   }
 }
+
+
+/* =========================================================
+   MOBILE PROFILE / SUNSET FIX — prevent portrait + labels from
+   covering the sunset sun on real phones.
+   ========================================================= */
+@media (max-width: 800px) {
+  /* MOBILE PROFILE COMPOSITION
+     Keep the portrait in its own row and reserve a real visual area
+     for the animated sunset beside/below the large name. */
+  .hero {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+  }
+
+  .sunset-scene {
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  /* The sun belongs to the title area, not the portrait area.
+     Using a fixed mobile-safe vertical range prevents it from drifting
+     behind the photo on phones with different aspect ratios. */
+  .sunset-sun {
+    top: clamp(620px, 72vh, 760px) !important;
+    left: 78% !important;
+    width: clamp(78px, 22vw, 105px) !important;
+    z-index: 1 !important;
+    box-shadow: 0 0 28px #ffb35b, 0 0 65px #f08b4d66 !important;
+    animation: sunsetDipMobile 10s ease-in-out infinite alternate !important;
+  }
+
+  @keyframes sunsetDipMobile {
+    from { transform: translate(-50%, -50%) scale(.94); }
+    to   { transform: translate(-50%, -38%) scale(1); }
+  }
+
+  /* Portrait is a separate layer. Its shadow is deliberately kept
+     compact so it cannot wash over the sun/title area. */
+  .hero-image {
+    position: relative;
+    z-index: 3;
+    margin-top: 18px;
+    margin-bottom: 42px;
+    box-shadow: 0 12px 28px rgba(0,0,0,.28) !important;
+  }
+
+  .profile-frame {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+  }
+
+  .profile-frame img {
+    position: relative;
+    z-index: 0;
+    display: block;
+  }
+
+  /* The portrait label stays strictly inside the portrait frame. */
+  .image-label {
+    z-index: 4;
+    bottom: 12px;
+    background: linear-gradient(to top, rgba(23,21,19,.72), transparent);
+    padding: 22px 8px 4px;
+  }
+
+  /* The large name sits above the background, but the sun is on the
+     right-hand side so the two do not cover one another. */
+  .hero-copy {
+    position: relative;
+    z-index: 4;
+    margin-top: 0;
+    padding-top: 0;
+    background: transparent;
+  }
+
+  .hero-copy h1 {
+    position: relative;
+    z-index: 4;
+    max-width: 92%;
+  }
+
+  .hero-copy::before {
+    content: none;
+  }
+
+  /* The sunset overlays the background only. It cannot intercept clicks
+     or cover the profile image/label. */
+  .sunset-scene::before,
+  .sunset-scene::after {
+    z-index: 0;
+  }
+
+  .sunset-horizon {
+    bottom: 28% !important;
+    opacity: .55;
+  }
+}
+
+@media (max-width: 520px) {
+  .sunset-sun {
+    top: clamp(570px, 70vh, 680px) !important;
+    left: 79% !important;
+    width: 78px !important;
+  }
+
+  .hero-image {
+    margin-bottom: 38px;
+  }
+
+  .image-label {
+    font-size: 6.5px;
+    bottom: 9px;
+  }
+}
