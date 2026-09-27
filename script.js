@@ -146,17 +146,37 @@ loadTrack();
   const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const isTouch = matchMedia('(pointer:coarse)').matches;
 
-  // Scroll progress.
-  const progressBar=document.createElement('div'); progressBar.className='scroll-progress'; document.body.append(progressBar);
+  // One shared scroll loop for mobile: progress bar + navbar + active section.
+  // The old version registered two independent scroll listeners.
+  const progressBar=document.createElement('div');
+  progressBar.className='scroll-progress';
+  document.body.append(progressBar);
   const navEl=document.querySelector('.nav');
   let lastY=scrollY;
-  function onScroll(){
+  let scrollTick=false;
+
+  function updateScrollUI(){
+    scrollTick=false;
+    const y=scrollY;
     const max=document.documentElement.scrollHeight-innerHeight;
-    progressBar.style.width=(max>0?(scrollY/max)*100:0)+'%';
-    if(navEl){navEl.classList.toggle('nav-scrolled',scrollY>35); if(scrollY>lastY+8 && scrollY>160) navEl.classList.add('nav-hidden'); if(scrollY<lastY-8) navEl.classList.remove('nav-hidden');}
-    lastY=scrollY;
+    progressBar.style.width=(max>0?(y/max)*100:0)+'%';
+    if(navEl){
+      navEl.classList.toggle('nav-scrolled',y>35);
+      if(y>lastY+8 && y>160) navEl.classList.add('nav-hidden');
+      if(y<lastY-8) navEl.classList.remove('nav-hidden');
+    }
+    lastY=y;
+
+    if(sections.length) updateActiveNav();
   }
-  addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  function requestScrollUI(){
+    if(scrollTick) return;
+    scrollTick=true;
+    requestAnimationFrame(updateScrollUI);
+  }
+  addEventListener('scroll',requestScrollUI,{passive:true});
+  addEventListener('resize',requestScrollUI,{passive:true});
 
   // Reveal elements as they enter the viewport.
   // Keep whole sections visible at every zoom level; animate their contents instead.
@@ -173,13 +193,7 @@ loadTrack();
     .map(a=>({link:a,section:document.querySelector(a.getAttribute('href'))}))
     .filter(item=>item.section);
 
-  let activeNavTick=false;
   function updateActiveNav(){
-    if(activeNavTick) return;
-    activeNavTick=true;
-
-    requestAnimationFrame(()=>{
-      activeNavTick=false;
       const marker=scrollY + Math.min(innerHeight * .34, 260);
       let current=sections[0];
       let closestDistance=Infinity;
@@ -197,15 +211,13 @@ loadTrack();
 
       links.forEach(a=>a.classList.remove('active'));
       if(current) current.link.classList.add('active');
-    });
   }
 
   if(sections.length){
-    addEventListener('scroll',updateActiveNav,{passive:true});
-    addEventListener('resize',updateActiveNav);
-    addEventListener('load',updateActiveNav);
-    updateActiveNav();
+    addEventListener('load',requestScrollUI,{once:true});
   }
+
+  requestScrollUI();
 
   // Subtle hero depth on pointer movement.
   const heroImage=document.querySelector('.hero-image');
